@@ -1,70 +1,104 @@
-# 🛒 ShopCard Backend - La Máquina de las Cartas ♠️
+# 🛒 ShopCard API — Backend
 
-El backend más molón para gestionar tu colección de cartas como un auténtico duque del mazo.
+API REST para la gestión de una tienda de cartas coleccionables, desarrollada con **Spring Boot** y **MySQL**. Actúa como backend del sistema [ShopCardApplication](https://github.com/Dangelcrack/ShopCardApplication).
 
-## 🚀 Pa' empezar
+---
 
-### 📋 Requisitos
-- Java 17+
+## ✨ Características
+
+- 📦 **CRUD completo** de productos (cartas)
+- 🔍 **Búsqueda y filtrado** por nombre, rareza y tipo
+- 🗄️ **Persistencia** con MySQL 8
+- 🌐 **API RESTful** con endpoints documentados
+- ⚙️ **Spring Boot** con Maven para gestión de dependencias
+
+---
+
+## 🛠️ Tecnologías
+
+| Tecnología | Versión | Uso |
+|---|---|---|
+| Java | 17+ | Lenguaje principal |
+| Spring Boot | — | Framework backend |
+| Spring Data JPA | — | Persistencia y ORM |
+| MySQL | 8 | Base de datos |
+| Maven | 3.8+ | Gestión de dependencias |
+
+---
+
+## ▶️ Instalación y ejecución
+
+### Requisitos previos
+- Java 17 o superior
 - Maven 3.8+
 - MySQL 8+
 
-### ⚙️ Instalación
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/tu-usuario/shopcard.git
-   cd shopcard
-   ```
-
-2. Crea la base de datos:
-   ```sql
-   CREATE DATABASE shopcard;
-   ```
-
-3. Configura `application.properties`:
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/shopcard
-   spring.datasource.username=tu_usuario
-   spring.datasource.password=tu_contraseña
-   ```
-
-4. Compila:
-   ```bash
-   mvn clean install
-   ```
-
-## 🏃‍♂️ Ejecución
-
 ```bash
+# 1. Clonar el repositorio
+git clone https://github.com/Dangelcrack/ShopCardApi.git
+cd ShopCardApi
+
+# 2. Crear la base de datos
+mysql -u root -p
+CREATE DATABASE shopcard;
+
+# 3. Configurar src/main/resources/application.properties
+spring.datasource.url=jdbc:mysql://localhost:3306/shopcard
+spring.datasource.username=tu_usuario
+spring.datasource.password=tu_contraseña
+
+# 4. Compilar y ejecutar
 mvn spring-boot:run
 ```
 
-## 🎯 Características
+La API arranca en `http://localhost:8080`
 
-- Gestión completa de cartas
-- Búsquedas con filtros avanzados
-- Sistema de valoraciones y rarezas
-- API RESTful documentada
+---
 
-## 🧑‍💻 Endpoints principales
+## 🔗 Endpoints principales
 
-| Método | Ruta               | Descripción         |
-|--------|--------------------|---------------------|
-| GET    | /api/productos        | Obtener todas las cartas |
-| POST   | /api/productos       | Crear nueva carta |
-| GET    | /api/productos/{id}   | Obtener carta por ID |
-| PUT    | /api/productos/{id}   | Actualizar carta |
-| DELETE | /api/productos/{id}   | Eliminar carta |
+| Método | Ruta | Descripción |
+|---|---|---|
+| GET | `/api/productos` | Listar todas las cartas |
+| GET | `/api/productos/{id}` | Obtener carta por ID |
+| POST | `/api/productos` | Crear nueva carta |
+| PUT | `/api/productos/{id}` | Actualizar carta |
+| DELETE | `/api/productos/{id}` | Eliminar carta |
 
-## 🆘 Soporte
+---
 
-Si algo falla:
+## 📁 Estructura del proyecto
 
-- Verifica la conexión a la base de datos
-- Revisa los logs de la aplicación
-- Abre un issue en GitHub
+```
+ShopCardApi/
+├── src/main/java/
+│   └── com/github/dangelcrack/
+│       ├── controller/     # Endpoints REST
+│       ├── model/          # Entidades JPA
+│       ├── repository/     # Repositorios Spring Data
+│       └── service/        # Lógica de negocio
+├── src/main/resources/
+│   └── application.properties
+└── pom.xml
+```
 
-## 📜 Licencia
+---
 
-MIT - Haz lo que quieras pero no me culpes si algo explota.
+## 🔄 Proyecto relacionado
 
+Este backend funciona junto al frontend Angular:
+👉 [ShopCardApplication](https://github.com/Dangelcrack/ShopCardApplication)
+
+---
+
+## 👤 Autor
+
+**Ángel Guerrero** — [@Dangelcrack](https://github.com/Dangelcrack)
+
+📧 angelguerrero540@gmail.com
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia MIT.
