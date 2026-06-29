@@ -1,139 +1,276 @@
-````markdown
+<div align="center">
+
 # 🛒 ShopCard API
 
-API REST para la gestión de una tienda de cartas coleccionables. Desarrollada con **Java 17** y **Spring Boot**, diseñada como el backend robusto para el sistema **ShopCardApplication**.
+### Backend REST para la gestión de una tienda de cartas coleccionables
+
+API desarrollada con **Java 17**, **Spring Boot 3** y **MySQL**, diseñada para proporcionar un backend robusto, escalable y fácil de mantener para la aplicación **ShopCard**.
+
+<br>
+
+![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge&logo=openjdk)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=springboot)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql)
+![Maven](https://img.shields.io/badge/Maven-3.8+-C71A36?style=for-the-badge&logo=apachemaven)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
+</div>
 
 ---
 
-## ✨ Características Principales
+# 📖 Tabla de Contenidos
 
-- 📦 **Gestión de Inventario:** CRUD completo de productos.
-- 🔍 **Búsqueda Avanzada:** Filtrado dinámico por nombre, rareza y categoría.
-- 🗄️ **Persistencia Robusta:** Implementación con JPA/Hibernate sobre MySQL 8.
-- 🌐 **Arquitectura RESTful:** Endpoints estandarizados.
-- 🛡️ **Buenas Prácticas:** Estructura modular y gestión de dependencias con Maven.
-
----
-
-## 🛠️ Stack Tecnológico
-
-| Tecnología | Versión | Propósito |
-|------------|---------|-----------|
-| Java | 17+ | Lenguaje de programación |
-| Spring Boot | 3.x | Framework de aplicación |
-| Spring Data JPA | 3.x | Capa de persistencia (ORM) |
-| MySQL | 8.0 | Base de datos relacional |
-| Maven | 3.8+ | Gestión del ciclo de vida del proyecto |
+- [Características](#-características)
+- [Tecnologías](#-tecnologías)
+- [Arquitectura](#-arquitectura)
+- [Instalación](#-instalación)
+- [Configuración](#-configuración)
+- [Endpoints](#-endpoints)
+- [Ejemplo de uso](#-ejemplo-de-uso)
+- [Testing](#-testing)
+- [Estructura del proyecto](#-estructura-del-proyecto)
+- [Roadmap](#-roadmap)
+- [Autor](#-autor)
+- [Licencia](#-licencia)
 
 ---
 
-## 🚀 Instalación y Ejecución
+# ✨ Características
 
-### Requisitos previos
+✅ CRUD completo de cartas coleccionables.
 
-- JDK 17 o superior
-- Maven 3.8 o superior
-- MySQL Server 8.0 o superior
+✅ Arquitectura RESTful.
 
-### 1. Clonar el repositorio
+✅ Persistencia mediante Spring Data JPA.
+
+✅ Base de datos MySQL.
+
+✅ Búsqueda dinámica por:
+
+- Nombre
+- Rareza
+- Categoría
+
+✅ Código organizado por capas.
+
+✅ Fácil integración con aplicaciones Frontend.
+
+---
+
+# 🚀 Tecnologías
+
+| Tecnología | Uso |
+|------------|-----|
+| Java 17 | Lenguaje principal |
+| Spring Boot 3 | Framework Backend |
+| Spring Data JPA | Persistencia |
+| Hibernate | ORM |
+| MySQL 8 | Base de datos |
+| Maven | Gestión del proyecto |
+
+---
+
+# 🏗 Arquitectura
+
+```
+Cliente
+   │
+   ▼
+Controller
+   │
+   ▼
+Service
+   │
+   ▼
+Repository
+   │
+   ▼
+MySQL
+```
+
+La aplicación sigue una arquitectura por capas para separar responsabilidades y facilitar el mantenimiento.
+
+---
+
+# 📦 Instalación
+
+## Clonar el proyecto
 
 ```bash
 git clone https://github.com/Dangelcrack/ShopCardApi.git
+
 cd ShopCardApi
-````
-
-### 2. Crear la base de datos
-
-```bash
-mysql -u root -p -e "CREATE DATABASE shopcard;"
 ```
 
-### 3. Configurar las credenciales
+## Crear la base de datos
 
-Edita el archivo:
+```sql
+CREATE DATABASE shopcard;
+```
 
-```text
+## Configurar la conexión
+
+Editar:
+
+```
 src/main/resources/application.properties
 ```
-
-Añade tu configuración:
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/shopcard
 spring.datasource.username=tu_usuario
 spring.datasource.password=tu_contraseña
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
 ```
 
-> ⚠️ **Seguridad:** Nunca subas tus credenciales reales a GitHub. Utiliza variables de entorno o añade el archivo correspondiente al `.gitignore`.
+---
 
-### 4. Ejecutar la aplicación
+## Ejecutar
 
 ```bash
 mvn spring-boot:run
 ```
 
-La API estará disponible en:
+o
 
-```text
+```bash
+./mvnw spring-boot:run
+```
+
+La API estará disponible en
+
+```
 http://localhost:8080
 ```
 
 ---
 
-## 🔗 API Reference
+# ⚙ Configuración
 
-| Método | Endpoint              | Descripción                      |
-| ------ | --------------------- | -------------------------------- |
-| GET    | `/api/productos`      | Obtener el catálogo completo     |
-| GET    | `/api/productos/{id}` | Obtener un producto por ID       |
-| POST   | `/api/productos`      | Registrar una nueva carta        |
-| PUT    | `/api/productos/{id}` | Actualizar un producto existente |
-| DELETE | `/api/productos/{id}` | Eliminar un producto             |
+Requisitos:
+
+- Java 17+
+- Maven 3.8+
+- MySQL 8+
 
 ---
 
-## 🧪 Testing
+# 🔗 Endpoints
 
-Actualmente el proyecto está en proceso de implementación de pruebas automatizadas.
-
-### Stack previsto
-
-* ✅ JUnit 5
-* ✅ Mockito
-
-**Estado:** En desarrollo de cobertura de pruebas unitarias para la capa de servicios.
+| Método | Endpoint | Descripción |
+|---------|----------|-------------|
+| GET | `/api/productos` | Obtener todos los productos |
+| GET | `/api/productos/{id}` | Obtener un producto |
+| POST | `/api/productos` | Crear un producto |
+| PUT | `/api/productos/{id}` | Actualizar un producto |
+| DELETE | `/api/productos/{id}` | Eliminar un producto |
 
 ---
 
-## 📁 Estructura del Proyecto
+# 💻 Ejemplo de uso
 
-```text
-src/
-└── main/
-    └── java/
-        └── com/
-            └── github/
-                └── dangelcrack/
-                    ├── controller/   # Exposición de endpoints REST
-                    ├── model/        # Entidades JPA
-                    ├── repository/   # Acceso a datos
-                    └── service/      # Lógica de negocio
+### Crear una carta
+
+### POST
+
+```
+/api/productos
+```
+
+Body
+
+```json
+{
+  "nombre": "Blue-Eyes White Dragon",
+  "categoria": "Monstruo",
+  "rareza": "Ultra Rare",
+  "precio": 49.99,
+  "stock": 10
+}
+```
+
+Respuesta
+
+```json
+{
+  "id": 1,
+  "nombre": "Blue-Eyes White Dragon",
+  "categoria": "Monstruo",
+  "rareza": "Ultra Rare",
+  "precio": 49.99,
+  "stock": 10
+}
 ```
 
 ---
 
-## 👤 Autor
+# 🧪 Testing
 
-**Ángel Guerrero**
+Actualmente se encuentra en desarrollo la implementación de pruebas unitarias utilizando:
 
-* GitHub: **@Dangelcrack**
-* Email: **[angelguerrero540@gmail.com](mailto:angelguerrero540@gmail.com)**
+- JUnit 5
+- Mockito
 
 ---
 
-## 📄 Licencia
-
-Este proyecto se distribuye bajo la licencia **MIT**.
+# 📁 Estructura del proyecto
 
 ```
+src
+└── main
+    ├── java
+    │   └── com.github.dangelcrack
+    │       ├── controller
+    │       ├── model
+    │       ├── repository
+    │       ├── service
+    │       └── ShopCardApiApplication.java
+    │
+    └── resources
+        ├── application.properties
 ```
+
+---
+
+# 📈 Roadmap
+
+- [x] CRUD de productos
+- [x] Persistencia con MySQL
+- [x] API REST
+- [ ] Validaciones con Bean Validation
+- [ ] Manejo global de excepciones
+- [ ] Swagger / OpenAPI
+- [ ] Docker
+- [ ] Pruebas unitarias
+- [ ] Integración continua (GitHub Actions)
+- [ ] Autenticación con Spring Security + JWT
+
+---
+
+# 👨‍💻 Autor
+
+## Ángel Guerrero
+
+Backend Developer
+
+GitHub
+
+https://github.com/Dangelcrack
+
+Correo
+
+angelguerrero540@gmail.com
+
+---
+
+# ⭐ Si este proyecto te resulta útil...
+
+No olvides dejar una **⭐ Star** en el repositorio.
+
+---
+
+# 📄 Licencia
+
+Este proyecto está bajo la licencia **MIT**.
